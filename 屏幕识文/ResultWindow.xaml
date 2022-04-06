@@ -1,0 +1,119 @@
+﻿<Window x:Class="屏幕识文.ResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:屏幕识文"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" 
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MinHeight="200"
+        MinWidth="400"
+        Title="识别结果" Icon="img/iconresult.png" Height="640" Width="1200" Style="{StaticResource NormalWinStyle}">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="BorderBrush" Value="#C9C9C9" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="grid_content">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" Orientation="Horizontal" Width="140" Height="40">
+            <Image Source="img/iconresult.png" Width="25" Height="25" HorizontalAlignment="Left" Margin="7" />
+            <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Margin="0" Foreground="#838384" FontSize="12">识别结果</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Height="40" Margin="0,0,12,0" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+            <Button Style="{StaticResource IconBtnStyle}" Click="Minimized">
+                <Image Source="img/minimize.png" Width="18" Margin="4,3" />
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Click="Maximized">
+                <Image x:Name="maximize" Source="img/maximize.png" Width="15" />
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Click="Close">
+                <Image Source="img/close.png" Width="15" Height="15" />
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Copypicture" Style="{StaticResource Btnstyle}"   
+                Grid.Row="0" Grid.Column="0"   
+               Click="Copypicture_Click" >复制图片</Button>
+            <Button x:Name="Copypicturedownload" 
+                Grid.Row="0" Grid.Column="1" 
+                Click="Copypicturedownload_Click"
+                Style="{StaticResource Btnstyle}">下载图片</Button>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Copwords" 
+                    Grid.Column="0" 
+                    Click="Copwords_Click"
+                    Style="{StaticResource Btnstyle}">
+                复制文字
+            </Button>
+            <Button x:Name="QRcode"
+                    Grid.Column="1"
+                    Click="QRcode_Click"
+                    Style="{StaticResource Btnstyle}">
+                二维码
+            </Button>
+            <!--<Button x:Name="Dotranslate"  Style="{StaticResource RoundCornorBtn}"
+                Grid.Row="0" Grid.Column="1" Margin="10"
+                FontSize="16" FontFamily="微软雅黑" 
+                Height="50" Click="Dotranslate_Click"            
+                VerticalContentAlignment="Center"
+                Background="#4A708B" BorderBrush="#A52A2A" Foreground="#FFFFFF">
+                点击翻译
+            </Button>-->
+        </Grid>
+        <!--图片文本框-->
+        <Image x:Name="CutedImage" Margin="10" Grid.Row="1" Grid.Column="0" />
+        <!--文字文本框-->
+        <Border Grid.Row="1" Grid.Column="1"  Margin="5" BorderBrush="#dcdfe6" CornerRadius="5" BorderThickness="1">
+            <TextBox x:Name="ResultBox" BorderThickness="0" Background="Transparent" />
+        </Border>
+        <!--翻译文本框-->
+        <TextBox x:Name="translateBox" Visibility="Hidden" Grid.Column="2" />
+        <!--点击复制按钮显示弹出框-->
+        <Popup x:Name="CopySucceedPopup"
+               PlacementTarget="{Binding ElementName=grid_content}"
+               Placement="Center"
+               VerticalOffset="150"             
+               PopupAnimation="Slide"
+               AllowsTransparency="True"
+               StaysOpen="true"
+               IsOpen="false">
+            <Border CornerRadius="4"
+                    Height="30" Width="100"
+                    Background="#FF62A565">
+                <TextBlock FontSize="12"
+                           x:Name="popupMsg"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="操作成功" Foreground="White"/>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

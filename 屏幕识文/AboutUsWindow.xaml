@@ -1,0 +1,48 @@
+﻿<Window x:Class="屏幕识文.AboutUsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:屏幕识文"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen"
+        Title="关于" Icon="/img/about.png" Height="193" Width="455" Style="{StaticResource NormalWinStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="35"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0"  Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" Orientation="Horizontal" Width="140" Height="40">
+            <Image Source="Resources/Images/关于.png" Width="25" Height="25" HorizontalAlignment="Left" Margin="7" />
+            <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Margin="0" Foreground="#838384" FontSize="12">关于</TextBlock>
+        </StackPanel>
+        <Button Margin="0,0,5,0" Style="{StaticResource IconBtnStyle}" Click="Close" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Image Source="img/close.png" Width="15" Height="15" />
+        </Button>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="5">
+            <TextBlock Margin="10, 10, 0, 0">
+            <Run FontSize="22" FontWeight="Bold" FontFamily="Arial">广州市濠通电子有限公司</Run>
+        </TextBlock>
+        <StackPanel Orientation="Horizontal" x:Name="VersionHolder" Height="75">
+            <TextBlock FontSize="16" Text="版本  v3.0.0" Margin="10,25,0,5" VerticalAlignment="Center"/>
+            <Button Visibility="Hidden" x:Name="CheckVersionButton" Content="检查更新" Margin="140,0,0,0" VerticalAlignment="Center"
+                    Width="120" Height="35" Foreground="#FFFFFF" Padding="8, 2" FontFamily="Arial" Style="{StaticResource BtnUpdate}" 
+                    Command="{Binding CheckForUpdate}" Click="CheckVersionButton_Click"/>
+            <TextBlock x:Name="NewVersionBox" Visibility="Hidden" VerticalAlignment="Center"
+                       Margin="20">
+                <Hyperlink x:Name="NewVersion" Command="{Binding DownloadNewVersion}"></Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </StackPanel>
+        </Grid>
+</Window>

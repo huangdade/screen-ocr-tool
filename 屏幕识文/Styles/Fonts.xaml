@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:屏幕识文.Styles">
+
+    <FontFamily x:Key="FontAwesome">/Fonts/#FontAwesome</FontFamily>
+    <FontFamily x:Key="QingKeYueSong">/Fonts/#方正清刻本悦宋简体</FontFamily>
+    
+</ResourceDictionary>

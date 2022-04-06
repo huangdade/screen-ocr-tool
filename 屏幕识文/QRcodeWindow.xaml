@@ -1,0 +1,64 @@
+﻿<Window x:Class="屏幕识文.QRcodeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:屏幕识文"
+        mc:Ignorable="d" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="二维码" Icon="img/QRcode.png" Height="605" Width="550" Style="{StaticResource NormalWinStyle}">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="200*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" Orientation="Horizontal" Width="140" Height="40">
+            <Image Source="img/QRcode.png" Width="25" Height="25" HorizontalAlignment="Left" Margin="7" />
+            <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Margin="0" Foreground="#838384" FontSize="12">二维码</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Height="40" Margin="0,0,12,0" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+            <Button Style="{StaticResource IconBtnStyle}" Click="Minimized">
+                <Image Source="img/minimize.png" Width="18" Margin="4,3" />
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Click="Maximized">
+                <Image x:Name="maximize" Source="img/maximize.png" Width="15" />
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Click="Close">
+                <Image Source="img/close.png" Width="15" Height="15" />
+            </Button>
+        </StackPanel>
+        <Image Width="480" Height="470" Grid.Row="1" Grid.ColumnSpan="2" x:Name="QRcodeimg" Margin="3"></Image>
+        <Button Grid.Row="2" Click="Button_Click_1" Style="{StaticResource Btnstyle}" Margin="13">另存为</Button>
+        <Button Grid.Row="2" Grid.Column="1" Click="Button_Click" Style="{StaticResource Btnstyle}" Margin="13">复制图片</Button>
+        <Popup x:Name="CopySucceedPopup"
+               PlacementTarget="{Binding ElementName=grid_content}"
+               Placement="Center"
+               VerticalOffset="100"             
+               PopupAnimation="Slide"
+               AllowsTransparency="True"
+               StaysOpen="true"
+               IsOpen="false">
+            <Border CornerRadius="10"
+                    Height="30" Width="100"
+                    Background="#FF62A565">
+                <TextBlock FontSize="12"
+                           x:Name="popupMsg"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="操作成功" Foreground="White"/>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

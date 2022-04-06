@@ -1,0 +1,89 @@
+﻿<Window x:Class="屏幕识文.TableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:屏幕识文"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" 
+        Title="导出表格" Icon="img/table.png" Height="450" Width="800"
+        Style="{StaticResource NormalWinStyle}">
+    <Grid Name="table">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+            <ColumnDefinition Width="12*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center" Orientation="Horizontal" Width="140" Height="40">
+            <Image Source="img/table.png" Width="25" Height="25" HorizontalAlignment="Left" Margin="7" />
+            <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Margin="0" Foreground="#838384" FontSize="12">导出表格</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Height="40" Margin="0,0,12,0" HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+            <Button Style="{StaticResource IconBtnStyle}" Click="Minimized">
+                <Image Source="img/minimize.png" Width="18" Margin="4,3" />
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Click="Maximized">
+                <Image x:Name="maximize" Source="img/maximize.png" Width="15" />
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Click="Close">
+                <Image Source="img/close.png" Width="15" Height="15" />
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="CutedTableImage" Margin="18" Grid.ColumnSpan="2" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Copypicturedownload" 
+                Click="Copypicturedownload_Click"
+                Style="{StaticResource Btnstyle}">下载图片</Button>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Opentable"  Grid.Column="0"
+                 Click="Opentable_Click"
+                Style="{StaticResource Btnstyle}">打开表格</Button>
+            <Button x:Name="Tabledownload" 
+                 Grid.Column="1" Command="{Binding OcrFormCommand}"
+                 Click="Tabledownload_Click"
+                Style="{StaticResource Btnstyle}">另存为表格</Button>
+        </Grid>
+        <!--点击复制按钮显示弹出框-->
+        <Popup x:Name="CopySucceedPopup"
+               PlacementTarget="{Binding ElementName=grid_content}"
+               Placement="Center"
+               VerticalOffset="150"             
+               PopupAnimation="Slide"
+               AllowsTransparency="True"
+               StaysOpen="true"
+               IsOpen="false">
+            <Border CornerRadius="15"
+                    Height="30" Width="100"
+                    Background="#FF62A565">
+                <TextBlock FontSize="12"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="操作成功" Foreground="White"/>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

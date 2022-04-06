@@ -1,0 +1,57 @@
+﻿<Window x:Class="屏幕识文.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:屏幕识文"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        SizeToContent="WidthAndHeight"
+        Title="屏幕识文 " Style="{StaticResource NormalWinStyle}">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="35"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Width="100" Grid.Row="0" Grid.Column="0" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Orientation="Horizontal">
+            <Image Source="Resources/Images/ocr_32.png" Width="25" Height="25" HorizontalAlignment="Left" Margin="7" />
+            <TextBlock HorizontalAlignment="Left"
+                   VerticalAlignment="Center" Margin="0" Foreground="#838384" FontSize="12">屏幕识文</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Height="40" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Style="{StaticResource IconBtnStyle}" Click="Close">
+                <Image Source="img/close.png" Width="18" Height="18"/>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" x:Name="stPOk" Margin="0,0,0,20">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,20,20,4" FontSize="16">
+                程序已经启动，请留意屏幕右下角小图标。
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Visibility="Collapsed" x:Name="stPUseHotKey" Margin="10,5">
+            <TextBlock Text="快捷键设置：" FontSize="22" FontWeight="Bold" Margin="0,0,0,8" />
+            <CheckBox Content="启用快捷键" IsChecked="{Binding UseHotKey}" Margin="10,5,0,6" />
+            <CheckBox Content="Ctrl" IsChecked="{Binding UseCtrl}" IsEnabled="{Binding UseHotKey}"
+                  Margin="10,5,0,6" />
+            <CheckBox Content="Shift" IsChecked="{Binding UseShift}" IsEnabled="{Binding UseHotKey}"
+                  Margin="10,5,0,6" />
+            <CheckBox Content="Alt" IsChecked="{Binding UseAlt}" IsEnabled="{Binding UseHotKey}"
+                  Margin="10,5,0,6" />
+            <StackPanel Orientation="Horizontal" Margin="10,5,0,6" IsEnabled="{Binding UseHotKey}">
+                <TextBlock Text="按键：" VerticalAlignment="Center" />
+                <ComboBox SelectedValue="{Binding UsedKey}" Width="120"
+                      ItemsSource="{Binding UsableKeys}" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Rectangle Height="1" Fill="#FF0C5795" HorizontalAlignment="Stretch" Margin="10,5,10,2" />
+            <TextBlock Text="注：本设置在重新打开软件后生效。" FontSize="12" Margin="10,5,0,6"/>
+        </StackPanel>
+    </Grid>
+</Window>
